@@ -3,6 +3,13 @@ before_install:
 - sudo apt-get -qq update
 # ant-optional is needed for ant junit
 - sudo apt-get install ant-optional
+addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - ant
+            - ant-optional
 jdk:
   - oraclejdk8
 script: ant "uiTest (1)" "scoreTest (1)" -lib ./lib/junit-4.13.jar
