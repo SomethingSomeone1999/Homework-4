@@ -2,12 +2,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class uiTest {
+public class uiTest {
 
 	@Test
-	void test() throws IOException {
+	public void test() throws IOException {
 		//fail("Not yet implemented");
 		Cards user = new Cards();
 		user.column = 52;

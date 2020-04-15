@@ -1,11 +1,12 @@
+
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
-class scoreTest {
+public class scoreTest {
 
 	@Test
-	void test() {
+	public void test() {
 		//fail("Not yet implemented");
 		Scorekeeping score = new Scorekeeping();
 		
