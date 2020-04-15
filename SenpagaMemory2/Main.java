@@ -63,7 +63,7 @@ public class Main {
 				Correct checker = new Correct();
 				
 				
-				checker.input(user.packNumber, user.cardNumber);
+				checker.input(user.packNumber, user.cardNumber, user.jokerBool);
 				checker.readFromFile();
 				checker.compare();
 				Scorekeeping scoreObj = new Scorekeeping();
@@ -71,7 +71,16 @@ public class Main {
 				scoreObj.cardsScore(checker.correctNumber);
 				
 				System.out.println("Your entire memorization session was " + test.seconds + " seconds long.");
-				System.out.println("You only got " + checker.correctNumber + " correct out of " + (52 * user.packNumber));
+				int number = 0;
+				if(user.jokerBool)
+				{
+					number = 54;
+				}
+				else
+				{
+					number = 52;
+				}
+				System.out.println("You only got " + checker.correctNumber + " correct out of " + (number * user.packNumber));
 				scoreObj.printScore();
 				checker.clear();
 			}

@@ -1,4 +1,4 @@
-package randomWordGame;
+
 
 import java.io.*;
 import java.util.*;
