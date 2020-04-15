@@ -80,8 +80,8 @@
     </target>
     <target name="scoreTest (1)">
         <mkdir dir="${junit.output.dir}"/>
+		<classpath location="lib/junit-4.13.jar" />
         <junit fork="yes" printsummary="withOutAndErr">
-			<classpath location="lib/junit-4.13.jar" />
             <formatter type="xml"/>
             <test name="scoreTest" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
@@ -90,8 +90,8 @@
     </target>
     <target name="uiTest (1)">
         <mkdir dir="${junit.output.dir}"/>
+		<classpath location="lib/junit-4.13.jar" />
         <junit fork="yes" printsummary="withOutAndErr">
-			<classpath location="lib/junit-4.13.jar" />
             <formatter type="xml"/>
             <test name="uiTest" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
