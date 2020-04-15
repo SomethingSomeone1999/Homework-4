@@ -88,13 +88,13 @@
             <classpath refid="run.Main (2).classpath"/>
         </java>
     </target>
-    <target name="scoreTest (1)">
+    <target name="scoreTest">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="scoreTest" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="run.scoreTest (1).classpath"/>
+            <classpath refid="run.scoreTest.classpath"/>
         </junit>
     </target>
     <target name="uiTest (1)">
