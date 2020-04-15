@@ -88,7 +88,7 @@
             <classpath refid="run.Main (2).classpath"/>
         </java>
     </target>
-    <target name="scoreTest">
+    <target name="scoreTest (1)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
