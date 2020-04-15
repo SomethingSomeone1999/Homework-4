@@ -23,7 +23,7 @@ public class UserMasterDAO implements UserDAO<UserMaster> {
      *
     */
 	@Override
-	public void createTable() throws SQLException {
+	public boolean createTable() throws SQLException {
 		//dbConnection = new DBConnection();
 	//	connect = dbConnection.connect_func();
 		System.out.println(connect);
@@ -32,8 +32,11 @@ public class UserMasterDAO implements UserDAO<UserMaster> {
                 "(userID VARCHAR(20) not NULL, " + " firstName VARCHAR(20), " +
                 " lastName VARCHAR(20), " +
                 " PRIMARY KEY ( userID ))"; 
-        statement.executeUpdate(sqlstmt);
+        boolean tableCreated = statement.executeUpdate(sqlstmt) > 0;
         statement.close();
+        
+        return tableCreated;
+        
 	}
 	
 	/**
@@ -65,14 +68,16 @@ public class UserMasterDAO implements UserDAO<UserMaster> {
      *
     */
 	@Override
-	public void add(UserMaster userMaster) throws SQLException {
+	public boolean add(UserMaster userMaster) throws SQLException {
 		muConnection = new ManagingUserDB();
 		connect = muConnection.connect();
 		String sql = "insert into  Users(UserNames) values (?)";
 		preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
 		preparedStatement.setString(1, userMaster.getUserNames());
-		preparedStatement.executeUpdate();
+		boolean rowInserted = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
+        
+        return rowInserted;
     }
 	
 	/**
@@ -80,7 +85,7 @@ public class UserMasterDAO implements UserDAO<UserMaster> {
      *
     */
 	@Override
-	public void update(UserMaster userMaster) throws SQLException {
+	public boolean update(UserMaster userMaster) throws SQLException {
 		connect = muConnection.connect();
 		String sql = "update Users set UserNames = ? where UserNames = ?";
        
@@ -88,9 +93,10 @@ public class UserMasterDAO implements UserDAO<UserMaster> {
         preparedStatement.setString(1, userMaster.getUserNames());
         preparedStatement.setString(2, userMaster.getUserNames());
         
-        preparedStatement.executeUpdate();
+        boolean rowUpdated = preparedStatement.executeUpdate() > 0;
         preparedStatement.close();
     //    dbConnection.disconnect();
+        return rowUpdated;
     }
 	
 	/**
@@ -98,7 +104,7 @@ public class UserMasterDAO implements UserDAO<UserMaster> {
      *
     */
 	@Override
-	public void delete(String UserNames) throws SQLException {
+	public boolean delete(String UserNames) throws SQLException {
 		muConnection = new ManagingUserDB();
 		connect = muConnection.connect();
         String sql = "DELETE FROM Users WHERE UserNames = ?";        
@@ -106,8 +112,11 @@ public class UserMasterDAO implements UserDAO<UserMaster> {
         preparedStatement = (PreparedStatement) connect.prepareStatement(sql);
         preparedStatement.setString(1, UserNames);
          
-        preparedStatement.executeUpdate();
+        boolean rowDeleted = preparedStatement.executeUpdate() >0;
         preparedStatement.close(); 
+        
+        return rowDeleted;
+        
     }
 	
 	/**
