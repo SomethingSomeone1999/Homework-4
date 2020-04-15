@@ -84,6 +84,7 @@
             <formatter type="xml"/>
             <test name="scoreTest" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
+			<classpath location="lib/junit-4.11.jar" />
             <classpath refid="run.scoreTest (1).classpath"/>
         </junit>
     </target>
@@ -93,6 +94,7 @@
             <formatter type="xml"/>
             <test name="uiTest" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
+			<classpath location="lib/junit-4.11.jar" />
             <classpath refid="run.uiTest (1).classpath"/>
         </junit>
     </target>
