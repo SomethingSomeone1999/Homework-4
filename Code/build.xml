@@ -1,103 +1,207 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- WARNING: Eclipse auto-generated file.
-              Any modifications will be overwritten.
-              To include a user specific buildfile here, simply create one in the same
-              directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="SenpagaMemory2">
-    <property environment="env"/>
-    <property name="junit.output.dir" value="junit"/>
-    <property name="debuglevel" value="source,lines,vars"/>
-    <property name="target" value="1.8"/>
-    <property name="source" value="1.8"/>
-    <path id="JUnit 5.libraryclasspath">
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_5.5.1.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
-    </path>
-    <path id="SenpagaMemory2.classpath">
-        <pathelement location="."/>
-        <pathelement location="../../Downloads/sqlite-jdbc-3.30.1.jar"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.Main (2).classpath">
-        <path refid="SenpagaMemory2.classpath"/>
-        <pathelement location="../../Downloads/sqlite-jdbc-3.30.1.jar"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.uiTest (1).classpath">
-        <path refid="SenpagaMemory2.classpath"/>
-        <pathelement location="../../Downloads/sqlite-jdbc-3.30.1.jar"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <path id="run.scoreTest (1).classpath">
-        <path refid="SenpagaMemory2.classpath"/>
-        <pathelement location="../../Downloads/sqlite-jdbc-3.30.1.jar"/>
-        <path refid="JUnit 5.libraryclasspath"/>
-    </path>
-    <target name="init">
-        <copy includeemptydirs="false" todir=".">
-            <fileset dir=".">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.java"/>
-            </fileset>
-        </copy>
-    </target>
-    <target name="clean">
-        <delete>
-            <fileset dir="." includes="**/*.class"/>
-        </delete>
-    </target>
-    <target depends="clean" name="cleanall"/>
-    <target depends="build-subprojects,build-project" name="build"/>
-    <target name="build-subprojects"/>
-    <target depends="init" name="build-project">
-        <echo message="${ant.project.name}: ${ant.file}"/>
-        <javac debug="true" debuglevel="${debuglevel}" destdir="." includeantruntime="false" source="${source}" target="${target}">
-            <src path="."/>
-            <classpath refid="SenpagaMemory2.classpath"/>
-        </javac>
-    </target>
-    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
-    <target name="Main (2)">
-        <java classname="Main" failonerror="true" fork="yes">
-            <classpath refid="run.Main (2).classpath"/>
-        </java>
-    </target>
-    <target name="uiTest (1)">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="uiTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="run.uiTest (1).classpath"/>
-        </junit>
-    </target>
-    <target name="scoreTest (1)">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <test name="scoreTest" todir="${junit.output.dir}"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="run.scoreTest (1).classpath"/>
-        </junit>
-    </target>
-    <target name="junitreport">
-        <junitreport todir="${junit.output.dir}">
-            <fileset dir="${junit.output.dir}">
-                <include name="TEST-*.xml"/>
-            </fileset>
-            <report format="frames" todir="${junit.output.dir}"/>
-        </junitreport>
-    </target>
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="senpagamemory" default="all">
+  
+  
+  <property file="build.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.zip"/>
+    <include name="*.egg"/>
+    <include name="*.ane"/>
+    <include name="*.jar"/>
+    <include name="*.ear"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  <!-- JDK definitions -->
+  
+  <property name="jdk.bin.1.8" value="${jdk.home.1.8}/bin"/>
+  <path id="jdk.classpath.1.8">
+    <fileset dir="${jdk.home.1.8}">
+      <include name="jre/lib/charsets.jar"/>
+      <include name="jre/lib/deploy.jar"/>
+      <include name="jre/lib/ext/access-bridge-64.jar"/>
+      <include name="jre/lib/ext/cldrdata.jar"/>
+      <include name="jre/lib/ext/dnsns.jar"/>
+      <include name="jre/lib/ext/jaccess.jar"/>
+      <include name="jre/lib/ext/jfxrt.jar"/>
+      <include name="jre/lib/ext/localedata.jar"/>
+      <include name="jre/lib/ext/nashorn.jar"/>
+      <include name="jre/lib/ext/sunec.jar"/>
+      <include name="jre/lib/ext/sunjce_provider.jar"/>
+      <include name="jre/lib/ext/sunmscapi.jar"/>
+      <include name="jre/lib/ext/sunpkcs11.jar"/>
+      <include name="jre/lib/ext/zipfs.jar"/>
+      <include name="jre/lib/javaws.jar"/>
+      <include name="jre/lib/jce.jar"/>
+      <include name="jre/lib/jfr.jar"/>
+      <include name="jre/lib/jfxswt.jar"/>
+      <include name="jre/lib/jsse.jar"/>
+      <include name="jre/lib/management-agent.jar"/>
+      <include name="jre/lib/plugin.jar"/>
+      <include name="jre/lib/resources.jar"/>
+      <include name="jre/lib/rt.jar"/>
+    </fileset>
+  </path>
+  
+  <property name="project.jdk.home" value="${jdk.home.1.8}"/>
+  <property name="project.jdk.bin" value="${jdk.bin.1.8}"/>
+  <property name="project.jdk.classpath" value="jdk.classpath.1.8"/>
+  
+  <!-- Modules -->
+  
+  
+  <!-- Module SenpagaMemory -->
+  
+  <dirname property="module.senpagamemory.basedir" file="${ant.file}"/>
+  
+  
+  <property name="module.jdk.home.senpagamemory" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.senpagamemory" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.senpagamemory" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.senpagamemory" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="senpagamemory.output.dir" value="${module.senpagamemory.basedir}/out/production/SenpagaMemory"/>
+  <property name="senpagamemory.testoutput.dir" value="${module.senpagamemory.basedir}/out/test/SenpagaMemory"/>
+  
+  <path id="senpagamemory.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="senpagamemory.module.production.classpath">
+    <path refid="${module.jdk.classpath.senpagamemory}"/>
+  </path>
+  
+  <path id="senpagamemory.runtime.production.module.classpath">
+    <pathelement location="${senpagamemory.output.dir}"/>
+  </path>
+  
+  <path id="senpagamemory.module.classpath">
+    <path refid="${module.jdk.classpath.senpagamemory}"/>
+    <pathelement location="${senpagamemory.output.dir}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  <path id="senpagamemory.runtime.module.classpath">
+    <pathelement location="${senpagamemory.testoutput.dir}"/>
+    <pathelement location="${senpagamemory.output.dir}"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.senpagamemory">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.senpagamemory">
+    <patternset refid="excluded.from.module.senpagamemory"/>
+  </patternset>
+  
+  <path id="senpagamemory.module.sourcepath">
+    <dirset dir="${module.senpagamemory.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  <path id="senpagamemory.module.test.sourcepath">
+    <dirset dir="${module.senpagamemory.basedir}">
+      <include name="tests"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.senpagamemory" depends="compile.module.senpagamemory.production,compile.module.senpagamemory.tests" description="Compile module SenpagaMemory"/>
+  
+  <target name="compile.module.senpagamemory.production" description="Compile module SenpagaMemory; production classes">
+    <mkdir dir="${senpagamemory.output.dir}"/>
+    <javac destdir="${senpagamemory.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.senpagamemory}/javac">
+      <compilerarg line="${compiler.args.senpagamemory}"/>
+      <bootclasspath refid="senpagamemory.module.bootclasspath"/>
+      <classpath refid="senpagamemory.module.production.classpath"/>
+      <src refid="senpagamemory.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.senpagamemory"/>
+    </javac>
+    
+    <copy todir="${senpagamemory.output.dir}">
+      <fileset dir="${module.senpagamemory.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.senpagamemory.tests" depends="compile.module.senpagamemory.production" description="compile module SenpagaMemory; test classes" unless="skip.tests">
+    <mkdir dir="${senpagamemory.testoutput.dir}"/>
+    <javac destdir="${senpagamemory.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.senpagamemory}/javac">
+      <compilerarg line="${compiler.args.senpagamemory}"/>
+      <bootclasspath refid="senpagamemory.module.bootclasspath"/>
+      <classpath refid="senpagamemory.module.classpath"/>
+      <src refid="senpagamemory.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.senpagamemory"/>
+    </javac>
+    
+    <copy todir="${senpagamemory.testoutput.dir}">
+      <fileset dir="${module.senpagamemory.basedir}/tests">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.senpagamemory" description="cleanup module">
+    <delete dir="${senpagamemory.output.dir}"/>
+    <delete dir="${senpagamemory.testoutput.dir}"/>
+  </target>
+  
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.senpagamemory" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.senpagamemory" description="build all modules"/>
+  
+  <target name="all" depends="build.modules" description="build all"/>
 </project>
