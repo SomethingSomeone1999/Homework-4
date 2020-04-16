@@ -2,6 +2,7 @@ language: java
 before_install:
 - sudo apt-get -qq update
 - sudo apt-get install ant-optional
+- sudo apt-get install junit
 addons:
         apt:
           sources:
