@@ -3,6 +3,8 @@ before_install:
 - sudo apt-get -qq update
 # ant-optional is needed for ant junit
 - sudo apt-get install ant-optional
+mvn install -DskipTests=true -B
+mvn test -B
 addons:
         apt:
           sources:
