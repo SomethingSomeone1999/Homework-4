@@ -11,6 +11,6 @@ addons:
             - ant
             - ant-optional
 jdk:
-  - oraclejdk8
+  - oraclejdk9
 script: ant "uiTest (1)" "scoreTest (1)"
 dist: trusty
